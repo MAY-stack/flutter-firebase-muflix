@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "679346640483",
+    "project_id": "muflix-2c2f2",
+    "storage_bucket": "muflix-2c2f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679346640483:android:66deb738693d5a32a14a56",
+        "android_client_info": {
+          "package_name": "com.example.muflix"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBZ6BOKElNDNDUL3dKNMzDyc_HbMO9W18c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

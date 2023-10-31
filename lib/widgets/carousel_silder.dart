@@ -13,18 +13,20 @@ class CarouselImage extends StatefulWidget {
 
 class _CarouselImageState extends State<CarouselImage> {
   late List<Album> albums;
-  late List<Widget> images;
+  late List<String> idS;
   late List<String> titles;
-  late List<bool> likes;
+  late List<Widget> images;
+  late List<int> popularities;
 
   int _currentPage = 0;
   late String _currentTitle;
 
   void setAlbums() {
     albums = widget.albums;
+    idS = albums.map((a) => a.albumId).toList();
     images = albums.map((a) => Image.network(a.imageUrl)).toList();
-    titles = albums.map((a) => a.name).toList();
-    likes = albums.map((m) => m.like).toList();
+    titles = albums.map((a) => a.albumName).toList();
+    popularities = albums.map((a) => a.albumPopularity).toList();
     _currentTitle = titles[_currentPage];
   }
 
@@ -59,7 +61,7 @@ class _CarouselImageState extends State<CarouselImage> {
             height: 60,
             child: Center(
               child: Text(
-                _currentTitle,
+                '$_currentTitle, ${idS[_currentPage]}',
                 overflow: TextOverflow.ellipsis, // 말줄임표 표시
                 maxLines: 2, // 표시할 최대 줄 수
                 style: const TextStyle(
@@ -77,31 +79,35 @@ class _CarouselImageState extends State<CarouselImage> {
                   // 내가 찜한 콘텐츠
                   child: Column(
                     children: [
-                      likes[_currentPage]
-                          ? IconButton(
-                              icon: const Icon(Icons.check),
-                              onPressed: () {
-                                setState(() {
-                                  likes[_currentPage] = !likes[_currentPage];
+                      IconButton(
+                        onPressed: () {},
+                        icon: const Icon(Icons.check),
+                      ),
+                      // likes[_currentPage]
+                      //     ? IconButton(
+                      //         icon: const Icon(Icons.check),
+                      //         onPressed: () {
+                      //           setState(() {
+                      //             likes[_currentPage] = !likes[_currentPage];
 
-                                  // firestore의 데이터 업데이트
-                                  // albums[_currentPage]
-                                  // .reference
-                                  // .update({'like': likes[_currentPage]});
-                                });
-                              },
-                            ) // likes[_currentPage] 가 true
-                          : IconButton(
-                              icon: const Icon(Icons.add),
-                              onPressed: () {
-                                setState(() {
-                                  likes[_currentPage] = !likes[_currentPage];
-                                  // albums[_currentPage]
-                                  //     .reference
-                                  //     .update({'like': likes[_currentPage]});
-                                });
-                              },
-                            ), // flase 일때
+                      //             // firestore의 데이터 업데이트
+                      //             // albums[_currentPage]
+                      //             // .reference
+                      //             // .update({'like': likes[_currentPage]});
+                      //           });
+                      //         },
+                      //       ) // likes[_currentPage] 가 true
+                      //     : IconButton(
+                      //         icon: const Icon(Icons.add),
+                      //         onPressed: () {
+                      //           setState(() {
+                      //             likes[_currentPage] = !likes[_currentPage];
+                      //             // albums[_currentPage]
+                      //             //     .reference
+                      //             //     .update({'like': likes[_currentPage]});
+                      //           });
+                      //         },
+                      //       ), // flase 일때
                       const Text(
                         '내가 찜한 콘텐츠',
                         style: TextStyle(fontSize: 11),

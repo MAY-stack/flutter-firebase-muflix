@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:muflix/screens/home_frame.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'screens/login_screen.dart';
 import 'screens/signup_screen.dart';
 import 'firebase_options.dart';
+import 'screens/test_screen.dart';
 import 'screens/welcome_screen.dart';
 // import 'package:firebase_core/firebase_core.dart';
 // import 'firebase_options.dart';
@@ -35,7 +35,10 @@ class _MuflixState extends State<MuFlix> {
 
   @override
   Widget build(BuildContext context) {
-    final isLogedIn = FirebaseAuth.instance.currentUser != null;
+    // Logger().i(
+    //     'FirebaseAuth.instance.currentUser: ${FirebaseAuth.instance.currentUser}');
+    // final isLogedIn = FirebaseAuth.instance.currentUser != null;
+    // Logger().i('isLogedIn: $isLogedIn');
     return MaterialApp(
       theme: ThemeData(
         brightness: Brightness.dark,
@@ -69,10 +72,10 @@ class _MuflixState extends State<MuFlix> {
         ),
       ),
 
-      initialRoute: isLogedIn ? '/' : '/welcome', // 초기 경로 설정
+      initialRoute: '/', // 초기 경로 설정
       routes: {
         '/': (context) => const HomeFrame(),
-        // '/': (context) => const TestScreen(),
+        '/test': (context) => const TestScreen(),
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),

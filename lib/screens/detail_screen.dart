@@ -65,7 +65,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                   // title
                                   padding: const EdgeInsets.all(7),
                                   child: Text(
-                                    widget.album.imageUrl,
+                                    widget.album.albumName,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontWeight: FontWeight.bold,
@@ -101,17 +101,17 @@ class _DetailScreenState extends State<DetailScreen> {
                                   ),
                                 ),
                                 Container(
-                                  // keywords
+                                  // album info
                                   padding: const EdgeInsets.all(5),
-                                  child: Text(widget.album.name),
+                                  child: Text(widget.album.albumName),
                                 ),
                                 Container(
-                                  //출연, 제작자
+                                  // artist info
                                   padding: const EdgeInsets.all(5),
                                   alignment: Alignment.centerLeft,
-                                  child: const Text(
-                                    '출연: 현빈, 손예진, 서지혜 \n 제작자: 이정효, 박지은',
-                                    style: TextStyle(
+                                  child: Text(
+                                    widget.album.artistName,
+                                    style: const TextStyle(
                                       color: Colors.white60,
                                       fontSize: 12,
                                     ),

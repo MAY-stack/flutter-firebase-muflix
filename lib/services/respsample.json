@@ -1,0 +1,48 @@
+{
+  "albums" : {
+    "href" : "https://api.spotify.com/v1/search?query=tag%3A+new&type=album&market=KR&offset=0&limit=1",
+    "items" : [ {
+      "album_type" : "single",
+      "artists" : [ {
+        "external_urls" : {
+          "spotify" : "https://open.spotify.com/artist/1PTFXkyRFmBixOL9OWRVPn"
+        },
+        "href" : "https://api.spotify.com/v1/artists/1PTFXkyRFmBixOL9OWRVPn",
+        "id" : "1PTFXkyRFmBixOL9OWRVPn",
+        "name" : "Genz",
+        "type" : "artist",
+        "uri" : "spotify:artist:1PTFXkyRFmBixOL9OWRVPn"
+      } ],
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/album/6qoPVBTeh12LWiXNvgi3LA"
+      },
+      "href" : "https://api.spotify.com/v1/albums/6qoPVBTeh12LWiXNvgi3LA",
+      "id" : "6qoPVBTeh12LWiXNvgi3LA",
+      "images" : [ {
+        "height" : 640,
+        "url" : "https://i.scdn.co/image/ab67616d0000b273495199bc9a34ca562cc8efd6",
+        "width" : 640
+      }, {
+        "height" : 300,
+        "url" : "https://i.scdn.co/image/ab67616d00001e02495199bc9a34ca562cc8efd6",
+        "width" : 300
+      }, {
+        "height" : 64,
+        "url" : "https://i.scdn.co/image/ab67616d00004851495199bc9a34ca562cc8efd6",
+        "width" : 64
+      } ],
+      "is_playable" : true,
+      "name" : "Jeden Tag 'ne Flasche Sekt",
+      "release_date" : "2017-08-22",
+      "release_date_precision" : "day",
+      "total_tracks" : 1,
+      "type" : "album",
+      "uri" : "spotify:album:6qoPVBTeh12LWiXNvgi3LA"
+    } ],
+    "limit" : 1,
+    "next" : "https://api.spotify.com/v1/search?query=tag%3A+new&type=album&market=KR&offset=1&limit=1",
+    "offset" : 0,
+    "previous" : null,
+    "total" : 4
+  }
+}

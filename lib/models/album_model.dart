@@ -1,31 +1,39 @@
 class Album {
-  final String id;
+  final String albumId;
+  final String artistId;
+  final String artistName;
   final String externalUrl;
   final String imageUrl;
-  final String name;
-  final bool like;
+  final String albumName;
+  final int? albumPopularity;
 
   Album({
-    required this.id,
+    required this.albumId,
+    required this.artistId,
+    required this.artistName,
     required this.externalUrl,
     required this.imageUrl,
-    required this.name,
-    required this.like,
+    required this.albumName,
+    this.albumPopularity,
   });
 
   factory Album.fromJson(Map<String, dynamic> json) {
-    final List<dynamic> artists = json['artists'];
-    final String artistId = artists.isNotEmpty ? artists[0]['id'] : '';
-
-    final List<dynamic> images = json['images'];
-    final String imageUrl = images.isNotEmpty ? images[1]['url'] : '';
+    final String albumId = json['id'];
+    final String artistId = json['artists'][0]['id'];
+    final String artistName = json['artists'][0]['name'];
+    final String externalUrl = json['external_urls']['spotify'];
+    final String imageUrl = json['images'][0]['url'];
+    final String albumName = json['name'];
+    final int? albumPopularity = json['popularity'];
 
     return Album(
-      id: json['id'],
-      externalUrl: json['external_urls']['spotify'],
+      albumId: albumId,
+      artistId: artistId,
+      artistName: artistName,
+      externalUrl: externalUrl,
       imageUrl: imageUrl,
-      name: json['name'],
-      like: false,
+      albumName: albumName,
+      albumPopularity: albumPopularity,
     );
   }
 }

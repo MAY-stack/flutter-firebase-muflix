@@ -44,7 +44,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget _buildList(BuildContext context, List<Album> snapshot) {
     List<Album> searchResults = [];
     for (Album a in snapshot) {
-      if (a.name.toString().contains(_searchText)) {
+      if (a.albumName.toString().contains(_searchText)) {
         searchResults.add(a);
       }
     }
@@ -67,7 +67,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(album.name),
+              child: Text(album.albumName),
             ),
           ),
         ],

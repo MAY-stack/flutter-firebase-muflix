@@ -14,6 +14,8 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   String email = ''; // 이메일을 저장할 변수
   String password = ''; // 비밀번호를 저장할 변수
+  bool isRunning = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           horizontal: 16, vertical: 8),
                       child: TextFormField(
                         style: const TextStyle(color: Colors.black),
-                        obscureText: true, // 입력 내용을 숨깁니다.
+                        // obscureText: true, // 입력 내용을 숨깁니다.
                         decoration: const InputDecoration(
                           hintText: 'Password',
                         ),
@@ -96,24 +98,31 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 40,
                       child: ElevatedButton(
                         onPressed: () async {
+                          setState(() {
+                            isRunning = false;
+                          });
                           try {
                             await FirebaseAuth.instance
                                 .signInWithEmailAndPassword(
                               email: email,
                               password: password,
                             );
+                            setState(() {
+                              isRunning = true;
+                            });
                             Logger().i('로그인 성공');
                             Navigator.pushNamed(context, '/');
                             // 로그인 성공
                           } catch (e) {
                             // 로그인 실패 시 에러 처리
-
                             Logger().i(e.toString());
                           }
                         },
-                        child: const Text(
-                          '로그인',
-                        ),
+                        child: isRunning
+                            ? const Text(
+                                '로그인',
+                              )
+                            : const Icon(Icons.refresh),
                       ),
                     ),
                   ),

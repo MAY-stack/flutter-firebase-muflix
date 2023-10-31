@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    albumData = ApiService().getAlbums();
+    // albumData = ApiService().getAlbums();
   }
 
   Widget _fetchData(BuildContext context) {

@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:logger/logger.dart';
 
 class WelcomeCarousel extends StatefulWidget {
   const WelcomeCarousel({super.key});

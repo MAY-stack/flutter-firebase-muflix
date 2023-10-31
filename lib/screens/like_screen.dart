@@ -47,7 +47,7 @@ class _LikeScreenState extends State<LikeScreen> {
           Center(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(album.name),
+              child: Text(album.albumName),
             ),
           ),
         ],

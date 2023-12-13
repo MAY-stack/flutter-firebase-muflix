@@ -9,7 +9,7 @@ import '../models/album_model.dart';
 import '../models/artist_model.dart';
 import '../models/track_model.dart';
 
-class ApiService {
+class ApiRefctoring {
   Logger logger = Logger();
   late final String accessToken;
   late final String tokenType;
@@ -20,7 +20,7 @@ class ApiService {
   // 만료되지 않았으면 토큰을 재사용한다.
 
   // get albums
-  Future<List<Album>> getAlbums() async {
+  Future<List<Album>> getAlbum() async {
     if (!tokenExist) await requestTokenPost();
 
     const String baseUrl = 'https://api.spotify.com/v1/search';
@@ -48,7 +48,7 @@ class ApiService {
     throw Exception('Failed to load album');
   }
 
-  Future<List<Artist>> getArtists() async {
+  Future<List<Artist>> getArtist() async {
     Logger().d('start get Artist requestToken \n tokenExist : $tokenExist');
 
     if (!tokenExist) await requestTokenPost();
@@ -82,7 +82,7 @@ class ApiService {
     throw Exception('Failed to load artist');
   }
 
-  Future<List<Track>> getTracks() async {
+  Future<List<Track>> getTrack() async {
     if (!tokenExist) await requestTokenPost();
     /*get Token*/
     const String baseUrl = 'https://api.spotify.com/v1/search';

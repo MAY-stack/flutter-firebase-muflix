@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:muflix/screens/api_test.dart';
 import 'package:muflix/screens/home_frame.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'screens/imageUploader.dart';
 import 'screens/login_screen.dart';
+import 'screens/profile_screen.dart';
 import 'screens/signup_screen.dart';
 import 'firebase_options.dart';
 import 'screens/test_screen.dart';
@@ -75,10 +78,13 @@ class _MuflixState extends State<MuFlix> {
       initialRoute: '/', // 초기 경로 설정
       routes: {
         '/': (context) => const HomeFrame(),
+        '/apitest': (context) => ApiTest(),
         '/test': (context) => const TestScreen(),
+        '/imageUploader': (context) => const ImageUploader(),
         '/welcome': (context) => const WelcomeScreen(),
         '/login': (context) => const LoginScreen(),
         '/signup': (context) => const SignUpScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
     );
   }

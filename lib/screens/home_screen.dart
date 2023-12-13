@@ -1,11 +1,12 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import '../models/artist_model.dart';
+import '../models/track_model.dart';
 import '../services/api_service.dart';
-import '../widgets/circle_slider.dart';
 import '../models/album_model.dart';
 import '../widgets/box_slider.dart';
 import '../widgets/carousel_silder.dart';
-import '../widgets/top_bar.dart';
+import '../widgets/circle_slider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,45 +16,39 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Future<List<Album>> albumData = ApiService().getAlbums();
-
-  @override
-  void initState() {
-    super.initState();
-    // albumData = ApiService().getAlbums();
-  }
+  final Future<List<Album>> albumData = ApiService().getAlbums();
+  final Future<List<Artist>> artistData = ApiService().getArtists();
+  final Future<List<Track>> trackData = ApiService().getTracks();
 
   Widget _fetchData(BuildContext context) {
-    return FutureBuilder<List<Album>>(
-      future: albumData,
-      builder: (context, snapshot) {
-        if (!snapshot.hasData) {
-          return const LinearProgressIndicator();
-        }
-        return _buildBody(context, snapshot);
-      },
-    );
-  }
-
-  Widget _buildBody(BuildContext context, AsyncSnapshot<List<Album>> snapshot) {
-    List<Album> albums = snapshot.data!.toList();
     return ListView(
       children: [
-        Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            const SizedBox(height: 7),
-            const TopBar(),
-            CarouselImage(
-              albums: albums,
-            ),
-          ],
+        FutureBuilder(
+          future: albumData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return CarouselImage(albums: snapshot.data as List<Album>);
+            }
+            return const CircularProgressIndicator();
+          },
         ),
-        CircleSlider(
-          albums: albums,
+        FutureBuilder(
+          future: artistData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return CircleSlider(items: snapshot.data as List<Artist>);
+            }
+            return const CircularProgressIndicator();
+          },
         ),
-        BoxSlider(
-          albums: albums,
+        FutureBuilder(
+          future: trackData,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return BoxSlider(tracks: snapshot.data as List<Track>);
+            }
+            return const CircularProgressIndicator();
+          },
         ),
       ],
     );

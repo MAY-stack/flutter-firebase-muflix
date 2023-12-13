@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../models/album_model.dart';
-import '../screens/detail_screen.dart';
+import '../models/track_model.dart';
 import '../utils/my_custom_scroll_behavior.dart';
 
 class BoxSlider extends StatelessWidget {
-  final List<Album> albums;
-  const BoxSlider({super.key, required this.albums});
+  final List<Track> tracks;
+  const BoxSlider({super.key, required this.tracks});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,7 @@ class BoxSlider extends StatelessWidget {
               behavior: MyCustomScrollBehavior(),
               child: ListView(
                 scrollDirection: Axis.horizontal,
-                children: makeBoxImages(context, albums),
+                children: makeBoxImages(context, tracks),
               ),
             ),
           ),
@@ -31,9 +30,9 @@ class BoxSlider extends StatelessWidget {
   }
 }
 
-List<Widget> makeBoxImages(BuildContext context, List<Album> albums) {
+List<Widget> makeBoxImages(BuildContext context, List<Track> tracks) {
   List<Widget> results = [];
-  for (var i = 0; i < albums.length; i++) {
+  for (var i = 0; i < tracks.length; i++) {
     results.add(
       InkWell(
         onTap: () {
@@ -41,9 +40,7 @@ List<Widget> makeBoxImages(BuildContext context, List<Album> albums) {
             MaterialPageRoute<void>(
               fullscreenDialog: true,
               builder: (BuildContext context) {
-                return DetailScreen(
-                  album: albums[i],
-                );
+                return const Text('detail screen');
               },
             ),
           );
@@ -52,7 +49,7 @@ List<Widget> makeBoxImages(BuildContext context, List<Album> albums) {
           padding: const EdgeInsets.only(right: 10),
           child: Align(
             alignment: Alignment.centerLeft,
-            child: Image.network(albums[i].imageUrl),
+            child: Image.network(tracks[i].imageUrl),
           ),
         ),
       ),

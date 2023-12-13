@@ -26,7 +26,6 @@ class _CarouselImageState extends State<CarouselImage> {
     idS = albums.map((a) => a.albumId).toList();
     images = albums.map((a) => Image.network(a.imageUrl)).toList();
     titles = albums.map((a) => a.albumName).toList();
-    popularities = albums.map((a) => a.albumPopularity).toList();
     _currentTitle = titles[_currentPage];
   }
 
@@ -57,15 +56,15 @@ class _CarouselImageState extends State<CarouselImage> {
           // 앨범 제목
           Container(
             padding: const EdgeInsets.fromLTRB(0, 10, 0, 3),
-            width: 200,
+            width: 300,
             height: 60,
             child: Center(
               child: Text(
-                '$_currentTitle, ${idS[_currentPage]}',
+                _currentTitle,
                 overflow: TextOverflow.ellipsis, // 말줄임표 표시
                 maxLines: 2, // 표시할 최대 줄 수
                 style: const TextStyle(
-                  fontSize: 15.0, // 텍스트 크기
+                  fontSize: 20.0, // 텍스트 크기
                 ),
               ),
             ),

@@ -6,7 +6,7 @@ class Track {
   final String artistId;
   final String artistName;
   final String imageUrl;
-  final int trackPopularity;
+  final int popularity;
 
   Track({
     required this.trackId,
@@ -16,19 +16,21 @@ class Track {
     required this.artistId,
     required this.artistName,
     required this.imageUrl,
-    required this.trackPopularity,
+    required this.popularity,
   });
 
   factory Track.fromJson(Map<String, dynamic> json) {
-    final String trackId = json['items']['id'];
-    final String trackName = json['items']['name'];
-    final String albumId = json['items']['album']['id'];
-    final String albumName = json['items']['album']['name'];
-    final String artistId = json['items']['artists'][0]['id'];
-    final String artistsName = json['items']['artists'][0]['name'];
-    final String imageUrl =
-        json['items']['album ']['itmes']['images'][1]['url'];
-    final int trackPopularity = json['items']['popularity'];
+    final String trackId = json['id'];
+    final String trackName = json['name'];
+    final String albumId = json['album']['id'];
+    final String albumName = json['album']['name'];
+    final String artistId = json['artists'][0]['id'];
+    final String artistsName = json['artists'][0]['name'];
+    final String imageUrl = json['album']['images'].isEmpty
+        ? ''
+        : json['album']['images'][0]['url'];
+    final int popularity = json['popularity'];
+
     return Track(
       trackId: trackId,
       trackName: trackName,
@@ -37,7 +39,7 @@ class Track {
       artistId: artistId,
       artistName: artistsName,
       imageUrl: imageUrl,
-      trackPopularity: trackPopularity,
+      popularity: popularity,
     );
   }
 }
